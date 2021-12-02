@@ -23,5 +23,5 @@ function createZone(hour) {
 	}
 }
 
-const newFilename = 'cleaned-price.json';
+const newFilename = 'src/lib/data/cleaned-price.json';
 await writeJSON(newFilename, filteredData);

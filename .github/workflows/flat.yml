@@ -2,7 +2,11 @@ name: flat
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: 56 * * * *
+    - cron: 18 * * * *
+  push:
+    paths:
+      - .github/workflows/flat.yml
+      - ./cleaning-electricity-price.js
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -19,4 +23,4 @@ jobs:
           http_url: https://api.esios.ree.es/archives/70/download_json
           downloaded_filename: electricity-price-api.json
           authorization: ${{ secrets.API_TOKEN }}
-          postprocess: cleaning-electricity-price.js
+          postprocess: ./cleaning-electricity-price.js
