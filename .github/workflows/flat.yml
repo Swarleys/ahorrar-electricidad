@@ -6,7 +6,7 @@ on:
       - .github/workflows/flat.yml
       - ./cleaning-electricity-price.js
   schedule:
-    - cron: 50 22  * * *
+    - cron: 35 17 * * *
 jobs:
   scheduled:
     runs-on: ubuntu-latest
