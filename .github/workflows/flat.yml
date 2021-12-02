@@ -1,12 +1,8 @@
 name: flat
 on:
   workflow_dispatch: {}
-  push:
-    paths:
-      - .github/workflows/flat.yml
-      - ./cleaning-electricity-price.js
   schedule:
-    - cron: 35 17 * * *
+    - cron: 45 * * * *
 jobs:
   scheduled:
     runs-on: ubuntu-latest
