@@ -43,7 +43,7 @@
 
 	let { price } = orderedData.find((data) => data.hour === userHour);
 
-	let nextCheapestData = orderedData.slice(userHour + 1);
+	let nextCheapestData = orderedData.slice(userHour);
 	let [nextCheapestHour, ...rest] = nextCheapestData.sort(({ price: a }, { price: b }) => a - b);
 </script>
 
