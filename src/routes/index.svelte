@@ -56,7 +56,7 @@
 
 	<p>Son las {userTime} y el precio es {price} €/kWh</p>
 	<p>
-		La hora más barata de lo que queda de dia es las {nextCheapestHour.formattedHour} a un precio de
+		La hora más barata de lo que queda de dia es a las {nextCheapestHour.formattedHour}h a un precio de
 		{nextCheapestHour.price} €/kWh
 	</p>
 	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
