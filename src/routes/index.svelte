@@ -42,6 +42,9 @@
 	let orderedData = sortedData.sort(({ hour: a }, { hour: b }) => a - b);
 
 	let { price } = orderedData.find((data) => data.hour === userHour);
+
+	let nextCheapestData = orderedData.slice(userHour + 1);
+	let [nextCheapestHour, ...rest] = nextCheapestData.sort(({ price: a }, { price: b }) => a - b);
 </script>
 
 <svelte:head>
@@ -52,9 +55,14 @@
 	<h1>Ahorra en electricidad.</h1>
 
 	<p>Son las {userTime} y el precio es {price} €/kWh</p>
+	<p>
+		La hora más barata de lo que queda de dia es a las {nextCheapestHour.formattedHour}h a un precio de
+		{nextCheapestHour.price} €/kWh
+	</p>
 	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 		{#each orderedData as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 			<div
+				class:hourPassed={userHour > hour}
 				class="px-4 py-2 max-w-s  bg-white rounded-xl shadow-md overflow-hidden flex flex-row items-center justify-center flex-grow"
 			>
 				<div class="flex flex-row flex-1">
@@ -88,5 +96,8 @@
 	}
 	.bgRed {
 		@apply bg-red-300 text-red-800 border-red-500 border-[1px];
+	}
+	.hourPassed {
+		@apply opacity-40;
 	}
 </style>
