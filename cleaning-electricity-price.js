@@ -39,7 +39,7 @@ for (let [index, element] of sortedByPrice.entries()) {
 	}
 }
 
-const sortedByHour = sortedData.sort(({ hour: a }, { hour: b }) => a - b);
+const sortedByHour = sortedByPrice.sort(({ hour: a }, { hour: b }) => a - b);
 
 const newFilename = 'src/lib/data/cleaned-price.json';
 await writeJSON(newFilename, sortedByHour);
