@@ -3,6 +3,16 @@ import { readJSON, writeJSON } from 'https://deno.land/x/flat@0.0.10/src/json.ts
 const filename = 'electricity-price-api.json';
 const json = await readJSON(filename);
 
+const createZone = (hour) => {
+	if (hour >= 0 && hour < 8) {
+		return 'Valle';
+	} else if ((hour >= 8 && hour < 10) || (hour >= 14 && hour < 18) || (hour >= 22 && hour < 24)) {
+		return 'Llano';
+	} else {
+		return 'Punta';
+	}
+};
+
 const filteredData = json.PVPC.map(({ Dia, Hora, PCB }) => {
 	const getFirstHour = Hora.split('-')[0];
 	return {
@@ -13,16 +23,6 @@ const filteredData = json.PVPC.map(({ Dia, Hora, PCB }) => {
 		zone: createZone(+getFirstHour)
 	};
 });
-
-const createZone = (hour) => {
-	if (hour >= 0 && hour < 8) {
-		return 'Valle';
-	} else if ((hour >= 8 && hour < 10) || (hour >= 14 && hour < 18) || (hour >= 22 && hour < 24)) {
-		return 'Llano';
-	} else {
-		return 'Punta';
-	}
-};
 
 const sortedByPrice = filteredData.sort(({ price: a }, { price: b }) => a - b);
 
