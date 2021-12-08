@@ -10,7 +10,7 @@
 		<span class="text-s leading-5 font-semibold">{formattedHour}h </span>
 		<span class="text-s leading-5 font-semibold ml-2">{zone}</span>
 	</div>
-	<div class="flex flex-row ">
+	<div class="flex flex-row">
 		<span
 			class=" flex text-s leading-5 font-semibold rounded-md content-around  items-center justify-center"
 			>{price} €/kWh
@@ -26,15 +26,6 @@
 </div>
 
 <style>
-	.bgGreen {
-		@apply bg-green-300 text-green-800 border-green-500 border-[1px];
-	}
-	.bgYellow {
-		@apply bg-yellow-300 text-yellow-800 border-yellow-500 border-[1px];
-	}
-	.bgRed {
-		@apply bg-red-300 text-red-800 border-red-500 border-[1px];
-	}
 	.hourPassed {
 		@apply opacity-40;
 	}
