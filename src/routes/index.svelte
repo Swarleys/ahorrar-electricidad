@@ -36,7 +36,7 @@
 	<title>Ahorra electricidad</title>
 </svelte:head>
 
-<section class="m-6 md:m-auto md:min-w-[700px] lg:min-w-[976px]">
+<section class="m-6 sm:m-auto md:min-w-[700px] lg:min-w-[976px]">
 	<h1>Ahorra en electricidad.</h1>
 
 	<section class="flex gap-3 justify-between sm:justify-center">
@@ -58,6 +58,7 @@
 			Mostrar los precios para mañana:
 		</label>
 		{#if showTomorrow}
+			<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{tomorrowData[0].day}</p>
 			<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 				{#each tomorrowData as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 					<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} />
@@ -67,9 +68,7 @@
 	{:else}
 		<!-- else content here -->
 	{/if}
-	<p
-		class="px-4 py-2 bg-white rounded-xl shadow-md w-fit mb-4"
-	>{data[0].day}</p>
+	<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{data[0].day}</p>
 	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 		{#each data as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 			<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour} />
