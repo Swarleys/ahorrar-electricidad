@@ -16,10 +16,10 @@ const config = {
 					$lib: path.resolve('./src/lib'),
 					$data: path.resolve('./src/lib/data'),
 					$actions: path.resolve('./src/Actions')
-				},
-				ssr: {
-					noExternal: ['chart.js']
 				}
+			},
+			ssr: {
+				noExternal: ['chart.js']
 			}
 		}
 	},
