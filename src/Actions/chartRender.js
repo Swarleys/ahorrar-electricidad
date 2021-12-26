@@ -1,5 +1,4 @@
-import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables); 
+import Chart from 'chart.js/auto';
 import data from '$data/cleaned-price.json';
 
 const colorObject = {
@@ -17,11 +16,10 @@ const colorObject = {
 	}
 };
 
-let labels = data.map(d => d.hour);
-let price = data.map(d => d.price);
+let labels = data.map((d) => d.hour);
+let price = data.map((d) => d.price);
 let backgroundColor = data.map((d) => colorObject[d.color].bg);
 let borderColor = data.map((d) => colorObject[d.color].border);
-
 
 let barData = {
 	type: 'bar',
