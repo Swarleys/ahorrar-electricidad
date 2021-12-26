@@ -13,9 +13,13 @@ const config = {
 			resolve: {
 				alias: {
 					// these are the aliases and paths to them
-					'$lib': path.resolve('./src/lib'),
-					'$data': path.resolve('./src/lib/data')
+					$lib: path.resolve('./src/lib'),
+					$data: path.resolve('./src/lib/data'),
+					$actions: path.resolve('./src/Actions')
 				}
+			},
+			ssr: {
+				noExternal: ['chart.js']
 			}
 		}
 	},

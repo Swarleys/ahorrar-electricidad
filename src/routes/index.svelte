@@ -8,6 +8,7 @@
 	import { browser } from '$app/env';
 	import CardHour from '$lib/cardHour/CardHour.svelte';
 	import PromotedData from '$lib/promotedData/PromotedData.svelte';
+	import Chart from '$lib/chart/Chart.svelte';
 
 	const tomonrrowVisible = 1235;
 	let userHour = new Date().getHours();
@@ -52,6 +53,8 @@
 			<PromotedData {color} {price} hour={userTime} text="¡Aprovecha!" />
 		{/if}
 	</section>
+	<Chart/>
+
 	{#if browser && userTotalMinutes > tomonrrowVisible && userHour < 24}
 		<label>
 			<input type="checkbox" bind:checked={showTomorrow} />
