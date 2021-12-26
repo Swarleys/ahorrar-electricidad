@@ -14,7 +14,8 @@ const config = {
 				alias: {
 					// these are the aliases and paths to them
 					'$lib': path.resolve('./src/lib'),
-					'$data': path.resolve('./src/lib/data')
+					'$data': path.resolve('./src/lib/data'),
+					'$actions': path.resolve('./src/Actions')
 				}
 			}
 		}
