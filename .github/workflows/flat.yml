@@ -2,7 +2,11 @@ name: flat
 on:
   workflow_dispatch: {}
   schedule:
+<<<<<<< Updated upstream
     - cron: 55 21 * * *
+=======
+    - cron: 50 22 * * *
+>>>>>>> Stashed changes
   push:
     paths:
       - .github/workflows/flat.yml
