@@ -1,5 +1,6 @@
 <script>
-    export let color, price, hour, text
+	export let color, price, hour, text;
+	const setCardHourColor = (color) => `bg${color}`;
 </script>
 
 <div
@@ -7,12 +8,7 @@
 >
 	<p>{text}</p>
 	<p>{hour}</p>
-	<p
-		class:bgGreen={color === 'green'}
-		class:bgYellow={color === 'yellow'}
-		class:bgRed={color === 'red'}
-		class="px-3 py-1 rounded-md"
-	>
+	<p class="px-3 py-1 rounded-md {setCardHourColor(color)}">
 		{price} €/kWh
 	</p>
 </div>
