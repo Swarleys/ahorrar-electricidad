@@ -62,7 +62,7 @@
 		</label>
 		{#if showTomorrow}
 			<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{tomorrowData[0].day}</p>
-			<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+			<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 				{#each tomorrowData as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 					<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} />
 				{/each}
@@ -72,7 +72,7 @@
 		<!-- else content here -->
 	{/if}
 	<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{data[0].day}</p>
-	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+	<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 		{#each data as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 			<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour} />
 		{/each}
