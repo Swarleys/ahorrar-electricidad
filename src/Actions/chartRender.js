@@ -1,4 +1,4 @@
-import Chart from 'chart.js/auto';
+import Chart from 'chart.js/auto/auto.js';
 import data from '$data/cleaned-price.json';
 
 const colorObject = {
