@@ -1,15 +1,16 @@
-<script context="module">
-	export const prerender = true;
-	import data from '$data/cleaned-price.json';
-	import tomorrowData from '$data/cleaned-price-tomorrow.json';
-	import { fly, fade } from 'svelte/transition';
-</script>
-
 <script>
+	export let data;
+	export let errors;
+	let todayData = data.todayData;
+	let tomorrowData = data.tomorrowData;
+
 	import { browser } from '$app/env';
 	import CardHour from '$lib/cardHour/CardHour.svelte';
 	import PromotedData from '$lib/promotedData/PromotedData.svelte';
 	import Chart from '$lib/chart/Chart.svelte';
+	import { fly, fade } from 'svelte/transition';
+
+
 
 	const tomonrrowVisible = 1225;
 	let userHour = new Date().getHours();
@@ -22,9 +23,9 @@
 		return `${formattedHour}:${formattedMinutes}h`;
 	};
 	let userTime = formatTime(userHour, userMinutes);
-	let { price, color } = data.find((data) => data.hour === userHour);
-	let nextCheapestData = data.slice(userHour);
-	let [nextCheapestHour] = nextCheapestData.sort(({ price: a }, { price: b }) => a - b);
+	let { price, color } = todayData.find((data) => data.hour === userHour);
+	let nextCheapestTodayData = todayData.slice(userHour);
+	let [nextCheapestHour] = nextCheapestTodayData.sort(({ price: a }, { price: b }) => a - b);
 	let {
 		formattedHour: nextFormattedHour,
 		color: nextColor,
@@ -33,7 +34,7 @@
 	} = nextCheapestHour;
 	let showTomorrow;
 	let showPastHours;
-	let removingHours = data.slice(userHour);
+	let removingHours = todayData.slice(userHour);
 	$: innerWidth = 0;
 </script>
 
@@ -79,7 +80,7 @@
 		<input type="checkbox" bind:checked={showPastHours} />
 		Mostrar las horas anteriores:
 	</label>
-	<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{data[0].day}</p>
+	<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{todayData[0].day}</p>
 	{#if innerWidth < 639 && !showPastHours}
 		<div  out:fade="{{ duration: 200}}" in:fly="{{y: 300, duration: 700, delay: 300}}"  class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 			{#each removingHours as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
@@ -88,7 +89,7 @@
 		</div>
 	{:else}
 		<div transition:fly="{{ y: -300, duration: 700 }}" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-			{#each data as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
+			{#each todayData as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 				<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour}/>
 			{/each}
 		</div>
