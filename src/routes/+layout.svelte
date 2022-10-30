@@ -1,37 +1,17 @@
 <script>
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
-	export let data;
 </script>
 
 <Header />
 
 <slot />
 
-<footer>
+<footer class="flex flex-col justify-center items-center p-10 sm:py-10 sm:px-0">
 	<p>
-		Realizado por <a href="http://www.estebanramos.work" target="_blank" rel="noopener noreferrer"
+		Realizado por <a href="http://www.estebanramos.work" target="_blank" rel="noopener noreferrer" class="font-bold"
 			>Esteban Ramos</a
 		> en Barcelona
 	</p>
 </footer>
 
-<style>
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
-	}
-</style>
