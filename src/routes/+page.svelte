@@ -1,10 +1,9 @@
 <script>
 	export let data;
-	export let errors;
 	let todayData = data.todayData;
 	let tomorrowData = data.tomorrowData;
 
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import CardHour from '$lib/cardHour/CardHour.svelte';
 	import PromotedData from '$lib/promotedData/PromotedData.svelte';
 	import Chart from '$lib/chart/Chart.svelte';
