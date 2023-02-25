@@ -2,7 +2,7 @@ name: flat-tomorrow
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: 20 18 * * *
+    - cron: 20 19 * * *
   push:
     paths:
       - .github/workflows/flat-tomorrow.yml
@@ -16,9 +16,9 @@ jobs:
         with:
           deno-version: v1.x
       - name: Check out repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Fetch data
-        uses: githubocto/flat@v3
+        uses: githubocto/flat@v3.3.1
         with:
           http_url: https://api.esios.ree.es/archives/70/download_json
           downloaded_filename: electricity-price-api-tomorrow.json
