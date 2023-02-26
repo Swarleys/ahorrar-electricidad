@@ -31,7 +31,7 @@
 	} = nextCheapestHour;
 	let showTomorrow;
 	let showPastHours;
-	let removingHours = !browser ? todayData : todayData.slice(userHour);
+	let removingHours = browser ? todayData.slice(userHour): todayData;
 	$: innerWidth = 0;
 </script>
 
