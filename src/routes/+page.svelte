@@ -9,9 +9,7 @@
 	import Chart from '$lib/chart/Chart.svelte';
 	import { fly, fade } from 'svelte/transition';
 
-
-
-	const tomonrrowVisible = 1225;
+	const tomorrowVisible = 1225;
 	let userHour = new Date().getHours();
 	let userMinutes = new Date().getMinutes();
 	let userTotalMinutes = userHour * 60 + userMinutes;
@@ -33,7 +31,7 @@
 	} = nextCheapestHour;
 	let showTomorrow;
 	let showPastHours;
-	let removingHours = todayData.slice(userHour);
+	let removingHours = !browser ? todayData : todayData.slice(userHour);
 	$: innerWidth = 0;
 </script>
 
@@ -61,7 +59,7 @@
 	</section>
 	<Chart/>
 
-	{#if browser && userTotalMinutes > tomonrrowVisible && userHour < 24}
+	{#if browser && userTotalMinutes > tomorrowVisible && userHour < 24}
 		<label class="flex items-baseline gap-2 mt-2">
 			<input type="checkbox" bind:checked={showTomorrow} />
 			Mostrar los precios de mañana:
