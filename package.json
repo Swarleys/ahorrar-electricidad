@@ -10,25 +10,25 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.14.0",
+		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/kit": "^1.20.5",
 		"autoprefixer": "^10.4.14",
-		"cssnano": "^5.1.15",
-		"eslint": "^8.36.0",
+		"cssnano": "^6.0.1",
+		"eslint": "^8.43.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"postcss": "^8.4.21",
+		"postcss": "^8.4.24",
 		"postcss-load-config": "^4.0.1",
-		"prettier": "^2.8.7",
-		"prettier-plugin-svelte": "^2.10.0",
-		"svelte": "^3.57.0",
-		"svelte-preprocess": "^5.0.3",
-		"tailwindcss": "^3.2.7",
-		"vite": "^4.2.1"
+		"prettier": "^2.8.8",
+		"prettier-plugin-svelte": "^2.10.1",
+		"svelte": "^3.59.2",
+		"svelte-preprocess": "^5.0.4",
+		"tailwindcss": "^3.3.2",
+		"vite": "^4.3.9"
 	},
 	"type": "module",
 	"dependencies": {
-		"chart.js": "^4.2.1"
+		"chart.js": "^4.3.0"
 	},
 	"engines": {
 		"node": ">= 16.0.0"
