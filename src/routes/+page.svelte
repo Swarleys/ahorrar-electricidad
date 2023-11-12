@@ -1,13 +1,18 @@
-<script>
-	export let data;
-	let todayData = data.todayData;
-	let tomorrowData = data.tomorrowData;
+<svelte:options runes={true} />
 
+<script>
 	import { browser } from '$app/environment';
 	import CardHour from '$lib/cardHour/CardHour.svelte';
 	import PromotedData from '$lib/promotedData/PromotedData.svelte';
 	import Chart from '$lib/chart/Chart.svelte';
-	import { fly, fade } from 'svelte/transition';
+
+	const { data } = $props();
+	let todayData = data.todayData;
+	let tomorrowData = data.tomorrowData;
+
+	let showTomorrow = $state();
+	let showPastHours = $state();
+	let innerWidth = $state();
 
 	const tomorrowVisible = 1225;
 	let userHour = new Date().getHours();
@@ -29,10 +34,7 @@
 		price: nextPrice,
 		hour: nextHour
 	} = nextCheapestHour;
-	let showTomorrow;
-	let showPastHours;
-	let removingHours = browser ? todayData.slice(userHour): todayData;
-	$: innerWidth = 0;
+	let removingHours = browser ? todayData.slice(userHour) : todayData;
 </script>
 
 <svelte:head>
@@ -57,7 +59,7 @@
 			<PromotedData {color} {price} hour={userTime} text="¡Aprovecha!" />
 		{/if}
 	</section>
-	<Chart/>
+	<Chart />
 
 	{#if browser && userTotalMinutes > tomorrowVisible && userHour < 24}
 		<label class="flex items-baseline gap-2 mt-2">
@@ -66,7 +68,7 @@
 		</label>
 		{#if showTomorrow}
 			<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{tomorrowData[0].day}</p>
-			<div transition:fly="{{ y: 200, duration: 500 }}" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+			<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4">
 				{#each tomorrowData as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
 					<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} />
 				{/each}
@@ -79,15 +81,15 @@
 	</label>
 	<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">{todayData[0].day}</p>
 	{#if innerWidth < 639 && !showPastHours}
-		<div  out:fade="{{ duration: 200}}" in:fly="{{y: 300, duration: 700, delay: 300}}"  class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+		<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 			{#each removingHours as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
-				<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour}/>
+				<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour} />
 			{/each}
 		</div>
 	{:else}
-		<div transition:fly="{{ y: -300, duration: 700 }}" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+		<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 			{#each todayData as { hour, formattedHour, price, zone, expensive, color }, i (hour)}
-				<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour}/>
+				<CardHour {hour} {formattedHour} {price} {zone} {expensive} {color} {userHour} />
 			{/each}
 		</div>
 	{/if}
