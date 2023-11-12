@@ -1,4 +1,3 @@
-export const prerender = true;
 import todayData from '$data/cleaned-price.json';
 import tomorrowData from '$data/cleaned-price-tomorrow.json';
 
