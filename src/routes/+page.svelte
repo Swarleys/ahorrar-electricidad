@@ -1,14 +1,18 @@
 <svelte:options runes={true} />
 
 <script>
-	const { data } = $props();
-	let todayData = data.todayData;
-	let tomorrowData = data.tomorrowData;
-
 	import { browser } from '$app/environment';
 	import CardHour from '$lib/cardHour/CardHour.svelte';
 	import PromotedData from '$lib/promotedData/PromotedData.svelte';
 	import Chart from '$lib/chart/Chart.svelte';
+
+	const { data } = $props();
+	let todayData = data.todayData;
+	let tomorrowData = data.tomorrowData;
+
+	let showTomorrow = $state();
+	let showPastHours = $state();
+	let innerWidth = $state();
 
 	const tomorrowVisible = 1225;
 	let userHour = new Date().getHours();
@@ -30,14 +34,7 @@
 		price: nextPrice,
 		hour: nextHour
 	} = nextCheapestHour;
-	let showTomorrow;
-	let showPastHours;
 	let removingHours = browser ? todayData.slice(userHour) : todayData;
-	let innerWidth = 0;
-	$effect(() => {
-		innerWidth = innerWidth;
-		console.log(innerWidth);
-	});
 </script>
 
 <svelte:head>
