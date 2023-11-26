@@ -9,7 +9,8 @@ const config = {
 		alias: {
 			// these are the aliases and paths to them
 			$data: path.resolve('./src/lib/data'),
-			$actions: path.resolve('./src/Actions')
+			$actions: path.resolve('./src/Actions'),
+			$utils: path.resolve('./src/utils')
 		}
 	},
 	ssr: {

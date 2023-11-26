@@ -10,7 +10,10 @@ const config = {
 		preprocess({
 			postcss: true
 		})
-	]
+	],
+	compilerOptions: {
+		runes: true
+	}
 };
 
 export default config;

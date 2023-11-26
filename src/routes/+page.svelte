@@ -1,4 +1,3 @@
-<svelte:options runes={true} />
 
 <script>
 	import { browser } from '$app/environment';

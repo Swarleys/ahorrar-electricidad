@@ -1,4 +1,3 @@
-<svelte:options runes={true} />
 <script>
 	let priceWithVat = 0;
 	const priceWithExtraVat = $derived((priceWithVat / 1.21) * 1.262);

@@ -1,4 +1,3 @@
-<svelte:options runes={true} />
 <script>
 	const { color = '', price = '', hour = '', text = '' } = $props();
 	const setCardHourColor = (color) => `bg${color}`;
