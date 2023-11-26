@@ -4,9 +4,9 @@ import { formattingJson, setColorAndExpensive } from './src/utils/helpers.js';
 const filename = 'electricity-price-api-tomorrow.json';
 const json = await readJSON(filename);
 
-formattingJson(json.PVPC);
+const formattedData = formattingJson(json.PVPC);
 
-const sortedByPrice = filteredData.sort(({ price: a }, { price: b }) => a - b);
+const sortedByPrice = formattedData.sort(({ price: a }, { price: b }) => a - b);
 
 setColorAndExpensive(sortedByPrice);
 
