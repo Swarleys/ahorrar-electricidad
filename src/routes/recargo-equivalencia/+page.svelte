@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	let priceWithVat = 0;
 	const priceWithExtraVat = $derived((priceWithVat / 1.21) * 1.262);
 </script>
