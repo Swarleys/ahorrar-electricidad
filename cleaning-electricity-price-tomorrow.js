@@ -8,9 +8,9 @@ const formattedData = formattingJson(json.PVPC);
 
 const sortedByPrice = formattedData.sort(({ price: a }, { price: b }) => a - b);
 
-setColorAndExpensive(sortedByPrice);
+const sortedWithColorAndExpensive =setColorAndExpensive(sortedByPrice);
 
-const sortedByHour = sortedByPrice.sort(({ hour: a }, { hour: b }) => a - b);
+const sortedByHour = sortedWithColorAndExpensive.sort(({ hour: a }, { hour: b }) => a - b);
 
 const newFilename = 'src/lib/data/cleaned-price-tomorrow.json';
 await writeJSON(newFilename, sortedByHour);
