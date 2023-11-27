@@ -1,5 +1,5 @@
 import { readJSON, writeJSON } from 'https://deno.land/x/flat@0.0.10/src/json.ts';
-import { formattingJson, setColorAndExpensive } from './src/utils/helpers.js';
+import { formattingJson, setColorAndExpensive } from './src/utils/helpers.ts';
 
 const filename = 'electricity-price-api-tomorrow.json';
 const json = await readJSON(filename);
