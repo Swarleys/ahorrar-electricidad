@@ -8,7 +8,7 @@ const formattedData = formattingJson(json.PVPC);
 
 const sortedByPrice = formattedData.sort(({ price: a }, { price: b }) => a - b);
 
-const sortedWithColorAndExpensive =setColorAndExpensive(sortedByPrice);
+const sortedWithColorAndExpensive = setColorAndExpensive(sortedByPrice);
 
 const sortedByHour = sortedWithColorAndExpensive.sort(({ hour: a }, { hour: b }) => a - b);
 
