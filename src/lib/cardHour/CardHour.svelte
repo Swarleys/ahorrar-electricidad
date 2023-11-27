@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { formattedData } from "src/utils/helpers";
 	interface CardHourProps extends formattedData {
-		userHour: number;
+		userHour?: number;
 	}
 
 	let { hour, formattedHour, zone, price, expensive, color, userHour = 0 } = $props<CardHourProps>();

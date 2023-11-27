@@ -74,7 +74,7 @@
 				class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4"
 			>
 				{#each tomorrowData as tomorrowHourlyData, i (tomorrowHourlyData.hour)}
-					<CardHour {...tomorrowHourlyData}  {userHour} />
+					<CardHour {...tomorrowHourlyData}/>
 				{/each}
 			</div>
 		{/if}
