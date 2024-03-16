@@ -53,7 +53,9 @@
 		'El mismo para todos los dias de la semana: Fruta del tiempo en cantidad libre (no mezclar) una tostada y un té o café sin azúcar (con sacarina, si desea).';
 
 	let hours = new Date().getHours();
-	let today = new Date().getDay();
+	let getDay = new Date().getDay();
+
+    const today = getDay === 0 ? 6 : getDay - 1;
 
 	const nextLunch = () => {
 		if (hours < 11) {
