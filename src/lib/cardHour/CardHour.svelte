@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { formattedData } from "src/utils/helpers";
+	import type { formattedData } from "$utils/helpers";
 	interface CardHourProps extends formattedData {
 		userHour?: number;
 	}
 
-	let { hour, formattedHour, zone, price, expensive, color, userHour = 0 } = $props<CardHourProps>();
+	let { hour, formattedHour, zone, price, expensive, color, userHour = 0 }: CardHourProps = $props();
 	const setCardHourColor = (color: formattedData['color']) => `bg${color}`;
 </script>
 
