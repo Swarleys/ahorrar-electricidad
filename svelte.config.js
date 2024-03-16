@@ -7,7 +7,8 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$data: 'src/lib/data',
-			$actions: 'src/Actions'
+			$actions: 'src/Actions',
+			$utils: 'src/utils'
 		}
 	},
 	preprocess: [vitePreprocess()],

@@ -5,7 +5,7 @@
 	import CardHour from '$lib/cardHour/CardHour.svelte';
 	import PromotedData from '$lib/promotedData/PromotedData.svelte';
 	import Chart from '$lib/chart/Chart.svelte';
-	import type { formattedData } from 'src/utils/helpers.js';
+	import type { formattedData } from '$utils/helpers.js';
 
 	const { data } = $props();
 	let todayData = data.todayData;
