@@ -64,7 +64,7 @@
 		if (hours < 15) {
 			return diet[today][0].lunch;
 		}
-		if (hours < 23) {
+		if (hours <= 23) {
 			return diet[today][0].dinner;
 		}
 	};
