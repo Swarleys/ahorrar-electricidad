@@ -1,11 +1,12 @@
 <script>
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
+	let { children } = $props();
 </script>
 
 <Header />
 
-<slot />
+{@render children()}
 
 <footer class="flex flex-col justify-center items-center p-10 sm:py-10 sm:px-0">
 	<p>
