@@ -6,27 +6,27 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@sveltejs/adapter-auto@^3.2.2",
-        "npm:@sveltejs/kit@^2.5.18",
-        "npm:@sveltejs/vite-plugin-svelte@4.0.0-next.4",
-        "npm:@typescript-eslint/eslint-plugin@^7.16.1",
-        "npm:@typescript-eslint/parser@^7.16.1",
-        "npm:autoprefixer@^10.4.19",
-        "npm:chart.js@^4.4.3",
-        "npm:cssnano@^7.0.4",
+        "npm:@sveltejs/adapter-auto@^3.3.0",
+        "npm:@sveltejs/kit@^2.7.2",
+        "npm:@sveltejs/vite-plugin-svelte@^4.0.0",
+        "npm:@typescript-eslint/eslint-plugin@^8.11.0",
+        "npm:@typescript-eslint/parser@^8.11.0",
+        "npm:autoprefixer@^10.4.20",
+        "npm:chart.js@^4.4.5",
+        "npm:cssnano@^7.0.6",
         "npm:eslint-config-prettier@^9.1.0",
-        "npm:eslint-plugin-svelte@^2.42.0",
-        "npm:eslint@^9.7.0",
+        "npm:eslint-plugin-svelte@^2.46.0",
+        "npm:eslint@^9.13.0",
         "npm:postcss-load-config@^6.0.1",
-        "npm:postcss@^8.4.39",
-        "npm:prettier-plugin-svelte@^3.2.6",
+        "npm:postcss@^8.4.47",
+        "npm:prettier-plugin-svelte@^3.2.7",
         "npm:prettier@^3.3.3",
-        "npm:svelte-preprocess@^6.0.2",
-        "npm:svelte@5.0.0-next.191",
-        "npm:tailwindcss@^3.4.6",
-        "npm:tslib@^2.6.3",
-        "npm:typescript@^5.5.3",
-        "npm:vite@^5.3.4"
+        "npm:svelte-preprocess@^6.0.3",
+        "npm:svelte@^5.0.5",
+        "npm:tailwindcss@^3.4.14",
+        "npm:tslib@^2.8.0",
+        "npm:typescript@^5.6.3",
+        "npm:vite@^5.4.9"
       ]
     }
   }
