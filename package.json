@@ -10,32 +10,30 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.3.0",
-		"@sveltejs/kit": "^2.7.2",
-		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/kit": "^2.50.1",
+		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"@tailwindcss/vite": "^4.1.18",
 		"@typescript-eslint/eslint-plugin": "^8.11.0",
 		"@typescript-eslint/parser": "^8.11.0",
-		"autoprefixer": "^10.4.20",
-		"cssnano": "^7.0.6",
 		"eslint": "^9.13.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.0",
-		"postcss": "^8.4.47",
-		"postcss-load-config": "^6.0.1",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
-		"svelte": "^5.0.5",
+		"svelte": "^5.49.1",
 		"svelte-preprocess": "^6.0.3",
-		"tailwindcss": "^3.4.14",
+		"tailwindcss": "^4.1.18",
 		"tslib": "^2.8.0",
 		"typescript": "^5.6.3",
-		"vite": "^5.4.9"
+		"vite": "^7.3.1"
 	},
 	"type": "module",
 	"dependencies": {
 		"chart.js": "^4.4.5"
 	},
 	"engines": {
-		"node": "^20.0.0"
-	}
+		"node": "^22.0.0"
+	},
+	"packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
 }

@@ -1,10 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
-
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit()],
+	plugins: [tailwindcss(), sveltekit()],
 	resolve: {
 		alias: {
 			// these are the aliases and paths to them
