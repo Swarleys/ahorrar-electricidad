@@ -73,26 +73,25 @@
 	
 </script>
 
-<section class="m-6 mt-3 sm:m-auto md:min-w-[700px] lg:min-w-[976px]">
+<section class="m-6 mt-3 sm:m-auto md:min-w-175 lg:min-w-244">
 	<h1 class="mb-3">Dieta</h1>
 	<h2 class="font-bold">Te toca comer:</h2>
 	<p>{nextDiet}</p>
 
     <h2 class="mt-5 mb-3 font-bold">Dieta de toda la semana</h2>
     <ul >
-        {#each diet as day, i}
-            <li class="mb-2">
-                <h3 class="font-bold">Día {i + 1}</h3>
-                <ul>
-                    {#each day as meal}
-                        <li>
-                            <p>Comida: {meal.lunch}</p>
-                            <p>Cena: {meal.dinner}</p>
-                        </li>
-                    {/each}
-                </ul>
-            </li>
-        {/each}
+		{#each diet as day, i (i)}
+			<li class="mb-2">
+				<h3 class="font-bold">Día {i + 1}</h3>
+				<ul>
+					{#each day as meal (meal.lunch)}
+						<li>
+							<p>Comida: {meal.lunch}</p>
+							<p>Cena: {meal.dinner}</p>
+						</li>
+					{/each}
+				</ul>
+			</li>
+		{/each}
+	</ul>
 </section>
-
-

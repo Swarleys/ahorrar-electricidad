@@ -70,7 +70,7 @@
 	};
 
 	const chartSync = {
-		get run() {
+		run() {
 			const chartInstance = chart;
 			if (!chartInstance) return;
 
@@ -84,7 +84,7 @@
 	};
 
 	$effect(() => {
-		chartSync.run;
+		chartSync.run()
 	});
 </script>
 

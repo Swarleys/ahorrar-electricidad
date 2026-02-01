@@ -33,7 +33,7 @@
 
 <svelte:window bind:innerWidth />
 
-<section class="m-6 mt-3 sm:m-auto md:min-w-[700px] lg:min-w-[976px]">
+<section class="m-6 mt-3 sm:m-auto md:min-w-175 lg:min-w-244">
 	<h1 class="mb-3">Ahorra en electricidad.</h1>
 
 	{#await prices}
@@ -92,7 +92,7 @@
 					transition:fly={{ y: 200, duration: 500 }}
 					class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4"
 				>
-					{#each tomorrowData as tomorrowHourlyData, i (tomorrowHourlyData.hour)}
+					{#each tomorrowData as tomorrowHourlyData (tomorrowHourlyData.hour)}
 						<CardHour {...tomorrowHourlyData} />
 					{/each}
 				</div>
@@ -111,7 +111,7 @@
 				in:fly={{ y: 300, duration: 700, delay: 300 }}
 				class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
 			>
-				{#each removedHours as removedHourlyData, i (removedHourlyData.hour)}
+				{#each removedHours as removedHourlyData (removedHourlyData.hour)}
 					<CardHour {...removedHourlyData} {userHour} />
 				{/each}
 			</div>
@@ -120,7 +120,7 @@
 				transition:fly={{ y: -300, duration: 700 }}
 				class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
 			>
-				{#each todayData as hourlyData, i (hourlyData.hour)}
+				{#each todayData as hourlyData (hourlyData.hour)}
 					<CardHour {...hourlyData} {userHour} />
 				{/each}
 			</div>
