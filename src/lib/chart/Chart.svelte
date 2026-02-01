@@ -1,14 +1,18 @@
 <script lang="ts">
-    import Chart from 'chart.js/auto';
-    import type { ChartConfiguration } from 'chart.js';
-    import type { Attachment } from 'svelte/attachments';
-    import type { formattedData } from '$utils/helpers';
-    import data from '$data/cleaned-price.json';
+	import { untrack } from 'svelte';
+	import Chart from 'chart.js/auto';
+	import type { ChartConfiguration } from 'chart.js';
+	import type { Attachment } from 'svelte/attachments';
+	import type { formattedData } from '$utils/helpers';
     
-    type ChartPoint = Pick<formattedData, 'hour' | 'price' | 'color'>;
-    type ChartColor = ChartPoint['color'];
-    
-    const chartData = data as ChartPoint[];
+	type ChartPoint = Pick<formattedData, 'hour' | 'price' | 'color'>;
+	type ChartColor = ChartPoint['color'];
+
+	interface Props {
+		data: ChartPoint[];
+	}
+
+	let { data: chartData }: Props = $props();
     
     const colorObject: Record<ChartColor, { bg: string; border: string }> = {
 	green: {
@@ -25,43 +29,63 @@
 	}
     };
     
-    const labels = chartData.map((d) => d.hour);
-    const price = chartData.map((d) => d.price);
-    const backgroundColor = chartData.map((d) => colorObject[d.color].bg);
-    const borderColor = chartData.map((d) => colorObject[d.color].border);
-    
-    const barData: ChartConfiguration<'bar', number[], number> = {
-	type: 'bar',
-	data: {
-		labels,
-		datasets: [
-			{
-				label: 'Precio electricidad',
-				data: price,
-				backgroundColor,
-				borderColor,
-				borderWidth: 1
-			}
-		]
-	},
-	options: {
-		scales: {
-			y: {
-				beginAtZero: false
+	const labels = $derived(chartData.map((d) => d.hour));
+	const price = $derived(chartData.map((d) => d.price));
+	const backgroundColor = $derived(chartData.map((d) => colorObject[d.color].bg));
+	const borderColor = $derived(chartData.map((d) => colorObject[d.color].border));
+
+	const barData: ChartConfiguration<'bar', number[], number> = $derived({
+		type: 'bar',
+		data: {
+			labels,
+			datasets: [
+				{
+					label: 'Precio electricidad',
+					data: price,
+					backgroundColor,
+					borderColor,
+					borderWidth: 1
+				}
+			]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: false
+				}
 			}
 		}
-	}
-    };
+	});
     
-    const chartAttachment: Attachment<HTMLCanvasElement> = (node) => {
-	const chart = new Chart(node, barData);
-    
-	return () => {
-		chart.destroy();
+	let chart = $state<Chart<'bar', number[], number> | null>(null);
+
+	const chartAttachment: Attachment<HTMLCanvasElement> = (node) => {
+		const chartInstance = new Chart(node, untrack(() => barData));
+		chart = chartInstance;
+
+		return () => {
+			chartInstance.destroy();
+			chart = null;
+		};
 	};
-    };
+
+	const chartSync = {
+		get run() {
+			const chartInstance = chart;
+			if (!chartInstance) return;
+
+			chartInstance.data.labels = labels;
+			const dataset = chartInstance.data.datasets[0];
+			dataset.data = price;
+			dataset.backgroundColor = backgroundColor;
+			dataset.borderColor = borderColor;
+			chartInstance.update();
+		}
+	};
+
+	$effect(() => {
+		chartSync.run;
+	});
 </script>
 
-<canvas {@attach chartAttachment} >
-
-</canvas>
+<canvas {@attach chartAttachment}></canvas>

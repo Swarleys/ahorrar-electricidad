@@ -1,0 +1,6 @@
+electricity-price-api.json
+electricity-price-api-tomorrow.json
+src/lib/data/cleaned-price.json
+src/lib/data/cleaned-price-tomorrow.json
+.svelte-kit/
+pnpm-lock.yaml

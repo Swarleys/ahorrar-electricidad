@@ -5,6 +5,9 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
 	kit: {
 		adapter: adapter(),
+		experimental: {
+			remoteFunctions: true
+		},
 		alias: {
 			$data: 'src/lib/data',
 			$actions: 'src/Actions',
@@ -13,7 +16,9 @@ const config = {
 	},
 	preprocess: [vitePreprocess()],
 	compilerOptions: {
-		runes: true
+		experimental: {
+			async: true
+		}
 	}
 };
 
