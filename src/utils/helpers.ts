@@ -7,7 +7,6 @@ const addingZone = (hour: number) => {
 	return 'Punta';
 };
 
-
 export interface Pvpc {
 	Dia: string;
 	Hora: string;
@@ -19,7 +18,7 @@ export interface baseFormattedData {
 	hour: number;
 	formattedHour: string;
 	price: number;
-	zone: "Valle" | "Llano" | "Punta";
+	zone: 'Valle' | 'Llano' | 'Punta';
 }
 
 export interface formattedData extends baseFormattedData {
@@ -34,9 +33,9 @@ export const formattingJson = (PVPC: Pvpc[]) => {
 			day: Dia,
 			hour: +getFirstHour,
 			formattedHour: `${getFirstHour}:00`,
-			price: +((+PCB.split(',')[0] / 1000).toFixed(3)),
+			price: +(+PCB.split(',')[0] / 1000).toFixed(3),
 			zone: addingZone(+getFirstHour)
-		}
+		};
 		return hourlyData;
 	});
 };
@@ -47,21 +46,20 @@ export const setColorAndExpensive = (sortedByPrice: baseFormattedData[]): format
 			return {
 				...element,
 				expensive: '€',
-				color: 'green',
-			}
+				color: 'green'
+			};
 		} else if (index >= 8 && index < 16) {
 			return {
 				...element,
 				expensive: '€€',
-				color: 'yellow',
-			}
+				color: 'yellow'
+			};
 		}
 		return {
 			...element,
 			expensive: '€€€',
-			color: 'red',
-		}
-	}
-	);
+			color: 'red'
+		};
+	});
 	return withColorAndExpensive;
 };
