@@ -3,6 +3,11 @@
 	const priceWithExtraVat = $derived((priceWithVat / 1.21) * 1.262);
 </script>
 
+<svelte:head>
+	<title>Recargo de equivalencia | Ahorra electricidad</title>
+	<meta name="robots" content="noindex, nofollow" />
+</svelte:head>
+
 <section class="m-6 mt-3 sm:m-auto md:min-w-[700px] lg:min-w-[976px] flex flex-col justify-center">
 	<h1 class="mb-3">Calcula el recargo de equivalencia.</h1>
 	<div

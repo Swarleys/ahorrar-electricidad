@@ -8,7 +8,7 @@
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
+		<a data-sveltekit-prefetch href={homeHref}>
 			<Logo/>
 		</a>
 	</div>
