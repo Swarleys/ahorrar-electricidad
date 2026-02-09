@@ -69,9 +69,14 @@
 		}
 	};
 
-    const nextDiet = nextLunch();
+	const nextDiet = nextLunch();
 	
 </script>
+
+<svelte:head>
+	<title>Dieta | Ahorra electricidad</title>
+	<meta name="robots" content="noindex, nofollow" />
+</svelte:head>
 
 <section class="m-6 mt-3 sm:m-auto md:min-w-175 lg:min-w-244">
 	<h1 class="mb-3">Dieta</h1>
