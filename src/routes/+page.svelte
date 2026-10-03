@@ -77,7 +77,7 @@
 		{/if}
 		<Chart data={todayData} />
 
-		{#if browser && userTotalMinutes > tomorrowVisible && userHour < 24}
+		{#if browser && userTotalMinutes >= tomorrowVisible && userHour < 24}
 			<label class="flex items-baseline gap-2 mt-2">
 				<input type="checkbox" bind:checked={showTomorrow} />
 				Mostrar los precios de mañana:
@@ -87,15 +87,19 @@
 					<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">
 						{tomorrowData[0].day}
 					</p>
+					<div
+						transition:fly={{ y: 200, duration: 500 }}
+						class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4"
+					>
+						{#each tomorrowData as tomorrowHourlyData (tomorrowHourlyData.hour)}
+							<CardHour {...tomorrowHourlyData} />
+						{/each}
+					</div>
+				{:else}
+					<p class="px-4 py-2 bg-white rounded-xl shadow-md w-fit my-4">
+						Los precios de mañana todavía no están disponibles. Vuelve a consultar en unos minutos.
+					</p>
 				{/if}
-				<div
-					transition:fly={{ y: 200, duration: 500 }}
-					class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4"
-				>
-					{#each tomorrowData as tomorrowHourlyData (tomorrowHourlyData.hour)}
-						<CardHour {...tomorrowHourlyData} />
-					{/each}
-				</div>
 			{/if}
 		{/if}
 		<label class="flex items-baseline sm:hidden gap-2 mt-2">

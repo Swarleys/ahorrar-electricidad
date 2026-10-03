@@ -2,25 +2,74 @@ name: flat-tomorrow
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: 20 18 * * *
+    # Two fallback attempts if publication or GitHub's scheduler is delayed.
+    - cron: '25 20-22 * * *'
+      timezone: Europe/Madrid
   push:
     paths:
       - .github/workflows/flat-tomorrow.yml
-      - ./cleaning-electricity-price-tomorrow.js
+      - cleaning-electricity-price-tomorrow.js
+      - src/utils/price-dates.ts
+concurrency:
+  group: flat-tomorrow-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: write
 jobs:
   scheduled:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          # Read the latest data, including commits from an earlier queued attempt.
+          ref: ${{ github.ref }}
+      - name: Check whether tomorrow's prices are already available
+        id: prices
+        shell: python
+        run: |
+          import json
+          import os
+          from datetime import datetime, timedelta
+          from zoneinfo import ZoneInfo
+
+          tomorrow = (datetime.now(ZoneInfo('Europe/Madrid')).date() + timedelta(days=1)).strftime('%d/%m/%Y')
+          try:
+              with open('src/lib/data/cleaned-price-tomorrow.json') as source:
+                  data = json.load(source)
+              ready = isinstance(data, list) and bool(data) and all(
+                  isinstance(row, dict) and row.get('day') == tomorrow for row in data
+              )
+          except (OSError, ValueError):
+              ready = False
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'needs_fetch={str(not ready).lower()}\n')
+          print(f'Prices for {tomorrow}: {"already available; skipping download" if ready else "download needed"}')
       - name: Setup deno
+        if: steps.prices.outputs.needs_fetch == 'true'
         uses: denoland/setup-deno@main
         with:
           deno-version: v1.x
-      - name: Check out repo
-        uses: actions/checkout@v3
       - name: Fetch data
-        uses: githubocto/flat@v3.4.0
-        with:
-          http_url: https://api.esios.ree.es/archives/70/download_json
-          downloaded_filename: electricity-price-api-tomorrow.json
-          authorization: ${{ secrets.API_TOKEN }}
-          postprocess: ./cleaning-electricity-price-tomorrow.js
+        if: steps.prices.outputs.needs_fetch == 'true'
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+        run: |
+          curl --fail --silent --show-error --max-time 60 --retry 2 \
+            --header "Authorization: $API_TOKEN" \
+            https://api.esios.ree.es/archives/70/download_json \
+            --output electricity-price-api-tomorrow.json
+          deno run --allow-read --allow-write ./cleaning-electricity-price-tomorrow.js
+      - name: Commit validated prices
+        if: success() && steps.prices.outputs.needs_fetch == 'true'
+        run: |
+          if git diff --quiet -- electricity-price-api-tomorrow.json src/lib/data/cleaned-price-tomorrow.json; then
+            echo 'No changes to publish.'
+            exit 0
+          fi
+          git config user.name flat-data
+          git config user.email flat-data@users.noreply.github.com
+          git add electricity-price-api-tomorrow.json src/lib/data/cleaned-price-tomorrow.json
+          git commit -m "Update validated prices for tomorrow"
+          git push
