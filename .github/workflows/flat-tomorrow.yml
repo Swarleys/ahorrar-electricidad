@@ -2,8 +2,22 @@ name: flat-tomorrow
 on:
   workflow_dispatch: {}
   schedule:
-    # Two fallback attempts if publication or GitHub's scheduler is delayed.
-    - cron: '25 20-22 * * *'
+    # Every 45 minutes from 18:35, stopping before 00:30 (next slot is 00:35).
+    - cron: '35 18 * * *'
+      timezone: Europe/Madrid
+    - cron: '20 19 * * *'
+      timezone: Europe/Madrid
+    - cron: '5 20 * * *'
+      timezone: Europe/Madrid
+    - cron: '50 20 * * *'
+      timezone: Europe/Madrid
+    - cron: '35 21 * * *'
+      timezone: Europe/Madrid
+    - cron: '20 22 * * *'
+      timezone: Europe/Madrid
+    - cron: '5 23 * * *'
+      timezone: Europe/Madrid
+    - cron: '50 23 * * *'
       timezone: Europe/Madrid
   push:
     paths:
@@ -11,13 +25,15 @@ on:
       - cleaning-electricity-price-tomorrow.js
       - src/utils/price-dates.ts
 concurrency:
-  group: flat-tomorrow-${{ github.ref }}
+  # Both price workflows publish to the same branch.
+  group: electricity-prices-${{ github.ref }}
   cancel-in-progress: false
 permissions:
   contents: write
 jobs:
   scheduled:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
@@ -33,19 +49,24 @@ jobs:
           from datetime import datetime, timedelta
           from zoneinfo import ZoneInfo
 
-          tomorrow = (datetime.now(ZoneInfo('Europe/Madrid')).date() + timedelta(days=1)).strftime('%d/%m/%Y')
+          now = datetime.now(ZoneInfo('Europe/Madrid'))
+          recovery = now.hour < 6
+          target_date = now.date() if recovery else now.date() + timedelta(days=1)
+          target_date = target_date.strftime('%d/%m/%Y')
+          filename = 'src/lib/data/cleaned-price.json' if recovery else 'src/lib/data/cleaned-price-tomorrow.json'
           try:
-              with open('src/lib/data/cleaned-price-tomorrow.json') as source:
+              with open(filename) as source:
                   data = json.load(source)
               ready = isinstance(data, list) and bool(data) and all(
-                  isinstance(row, dict) and row.get('day') == tomorrow for row in data
+                  isinstance(row, dict) and row.get('day') == target_date for row in data
               )
           except (OSError, ValueError):
               ready = False
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write(f'needs_fetch={str(not ready).lower()}\n')
-          print(f'Prices for {tomorrow}: {"already available; skipping download" if ready else "download needed"}')
+          print(f'Prices for {target_date}: {"already available; skipping download" if ready else "download needed"}')
+          print(f'Event: {os.environ["GITHUB_EVENT_NAME"]}; Madrid time: {now.isoformat()}')
       - name: Setup deno
         if: steps.prices.outputs.needs_fetch == 'true'
         uses: denoland/setup-deno@main
@@ -55,21 +76,23 @@ jobs:
         if: steps.prices.outputs.needs_fetch == 'true'
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
+          PRICE_DOWNLOAD: ${{ runner.temp }}/electricity-prices.json
         run: |
           curl --fail --silent --show-error --max-time 60 --retry 2 \
             --header "Authorization: $API_TOKEN" \
             https://api.esios.ree.es/archives/70/download_json \
-            --output electricity-price-api-tomorrow.json
-          deno run --allow-read --allow-write ./cleaning-electricity-price-tomorrow.js
+            --output "$PRICE_DOWNLOAD"
+          deno run --allow-read --allow-write ./cleaning-electricity-price-tomorrow.js "$PRICE_DOWNLOAD"
       - name: Commit validated prices
         if: success() && steps.prices.outputs.needs_fetch == 'true'
         run: |
-          if git diff --quiet -- electricity-price-api-tomorrow.json src/lib/data/cleaned-price-tomorrow.json; then
+          price_files=(electricity-price-api.json electricity-price-api-tomorrow.json src/lib/data/cleaned-price.json src/lib/data/cleaned-price-tomorrow.json)
+          if git diff --quiet -- "${price_files[@]}"; then
             echo 'No changes to publish.'
             exit 0
           fi
           git config user.name flat-data
           git config user.email flat-data@users.noreply.github.com
-          git add electricity-price-api-tomorrow.json src/lib/data/cleaned-price-tomorrow.json
-          git commit -m "Update validated prices for tomorrow"
+          git add "${price_files[@]}"
+          git commit -m "Update validated electricity prices"
           git push

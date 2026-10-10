@@ -7,6 +7,9 @@ on:
     paths:
       - .github/workflows/flat.yml
       - ./cleaning-electricity-price.js
+concurrency:
+  group: electricity-prices-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -17,6 +20,9 @@ jobs:
           deno-version: v1.x
       - name: Check out repo
         uses: actions/checkout@v3
+        with:
+          # Include any price update published while this run was queued.
+          ref: ${{ github.ref }}
       - name: Fetch data
         uses: githubocto/flat@v3.4.0
         with:
