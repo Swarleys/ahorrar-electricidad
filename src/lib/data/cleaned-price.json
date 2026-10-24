@@ -1,1 +1,227 @@
-[{"day":"24/10/2026","hour":0,"formattedHour":"00:00","price":0.228,"zone":"Valle","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":1,"formattedHour":"01:00","price":0.228,"zone":"Valle","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":2,"formattedHour":"02:00","price":0.227,"zone":"Valle","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":3,"formattedHour":"03:00","price":0.228,"zone":"Valle","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":4,"formattedHour":"04:00","price":0.228,"zone":"Valle","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":5,"formattedHour":"05:00","price":0.228,"zone":"Valle","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":6,"formattedHour":"06:00","price":0.227,"zone":"Valle","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":7,"formattedHour":"07:00","price":0.237,"zone":"Valle","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":8,"formattedHour":"08:00","price":0.245,"zone":"Llano","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":9,"formattedHour":"09:00","price":0.189,"zone":"Llano","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":10,"formattedHour":"10:00","price":0.068,"zone":"Punta","expensive":"€","color":"green"},{"day":"24/10/2026","hour":11,"formattedHour":"11:00","price":-0.002,"zone":"Punta","expensive":"€","color":"green"},{"day":"24/10/2026","hour":12,"formattedHour":"12:00","price":-0.004,"zone":"Punta","expensive":"€","color":"green"},{"day":"24/10/2026","hour":13,"formattedHour":"13:00","price":-0.004,"zone":"Punta","expensive":"€","color":"green"},{"day":"24/10/2026","hour":14,"formattedHour":"14:00","price":-0.004,"zone":"Llano","expensive":"€","color":"green"},{"day":"24/10/2026","hour":15,"formattedHour":"15:00","price":-0.002,"zone":"Llano","expensive":"€","color":"green"},{"day":"24/10/2026","hour":16,"formattedHour":"16:00","price":-0.002,"zone":"Llano","expensive":"€","color":"green"},{"day":"24/10/2026","hour":17,"formattedHour":"17:00","price":0.029,"zone":"Llano","expensive":"€","color":"green"},{"day":"24/10/2026","hour":18,"formattedHour":"18:00","price":0.171,"zone":"Punta","expensive":"€€","color":"yellow"},{"day":"24/10/2026","hour":19,"formattedHour":"19:00","price":0.246,"zone":"Punta","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":20,"formattedHour":"20:00","price":0.254,"zone":"Punta","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":21,"formattedHour":"21:00","price":0.253,"zone":"Punta","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":22,"formattedHour":"22:00","price":0.233,"zone":"Llano","expensive":"€€€","color":"red"},{"day":"24/10/2026","hour":23,"formattedHour":"23:00","price":0.22,"zone":"Llano","expensive":"€€","color":"yellow"}]
+[
+  {
+    "day": "25/10/2026",
+    "hour": 0,
+    "formattedHour": "00:00",
+    "price": 0.261,
+    "zone": "Valle",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 1,
+    "formattedHour": "01:00",
+    "price": 0.233,
+    "zone": "Valle",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 2,
+    "formattedHour": "02:00",
+    "price": 0.226,
+    "zone": "Valle",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 3,
+    "formattedHour": "03:00",
+    "price": 0.212,
+    "zone": "Valle",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 4,
+    "formattedHour": "04:00",
+    "price": 0.19,
+    "zone": "Valle",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 5,
+    "formattedHour": "05:00",
+    "price": 0.177,
+    "zone": "Valle",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 6,
+    "formattedHour": "06:00",
+    "price": 0.187,
+    "zone": "Valle",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 7,
+    "formattedHour": "07:00",
+    "price": 0.213,
+    "zone": "Valle",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 8,
+    "formattedHour": "08:00",
+    "price": 0.232,
+    "zone": "Llano",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 9,
+    "formattedHour": "09:00",
+    "price": 0.118,
+    "zone": "Llano",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 10,
+    "formattedHour": "10:00",
+    "price": 0.044,
+    "zone": "Punta",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 11,
+    "formattedHour": "11:00",
+    "price": 0.042,
+    "zone": "Punta",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 12,
+    "formattedHour": "12:00",
+    "price": 0.041,
+    "zone": "Punta",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 13,
+    "formattedHour": "13:00",
+    "price": 0.041,
+    "zone": "Punta",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 14,
+    "formattedHour": "14:00",
+    "price": 0.042,
+    "zone": "Llano",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 15,
+    "formattedHour": "15:00",
+    "price": 0.042,
+    "zone": "Llano",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 16,
+    "formattedHour": "16:00",
+    "price": 0.046,
+    "zone": "Llano",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 17,
+    "formattedHour": "17:00",
+    "price": 0.054,
+    "zone": "Llano",
+    "expensive": "€",
+    "color": "green"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 18,
+    "formattedHour": "18:00",
+    "price": 0.187,
+    "zone": "Punta",
+    "expensive": "€€",
+    "color": "yellow"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 19,
+    "formattedHour": "19:00",
+    "price": 0.309,
+    "zone": "Punta",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 20,
+    "formattedHour": "20:00",
+    "price": 0.332,
+    "zone": "Punta",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 21,
+    "formattedHour": "21:00",
+    "price": 0.346,
+    "zone": "Punta",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 22,
+    "formattedHour": "22:00",
+    "price": 0.332,
+    "zone": "Llano",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 23,
+    "formattedHour": "23:00",
+    "price": 0.325,
+    "zone": "Llano",
+    "expensive": "€€€",
+    "color": "red"
+  },
+  {
+    "day": "25/10/2026",
+    "hour": 24,
+    "formattedHour": "24:00",
+    "price": 0.314,
+    "zone": "Punta",
+    "expensive": "€€€",
+    "color": "red"
+  }
+]
