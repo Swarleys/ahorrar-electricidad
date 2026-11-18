@@ -12,10 +12,21 @@ export const getTomorrowDate = (now = new Date()): string => {
 	);
 };
 
-export const hasTomorrowPrices = (data: { day: string }[], now = new Date()): boolean => {
-	const tomorrow = getTomorrowDate(now);
-	return data.length > 0 && data.every(({ day }) => day === tomorrow);
-};
+export const getMadridHour = (now = new Date()): number =>
+	Number(
+		new Intl.DateTimeFormat('en-GB', {
+			timeZone: 'Europe/Madrid',
+			hour: '2-digit',
+			hourCycle: 'h23'
+		}).format(now)
+	);
+
+/** True when every row belongs to `date` (dd/mm/yyyy) and there is at least one. */
+export const hasPricesFor = (data: { day: string }[], date: string): boolean =>
+	data.length > 0 && data.every(({ day }) => day === date);
+
+export const hasTomorrowPrices = (data: { day: string }[], now = new Date()): boolean =>
+	hasPricesFor(data, getTomorrowDate(now));
 
 export const getPriceUpdateTarget = (
 	data: { day: string }[],
@@ -23,16 +34,8 @@ export const getPriceUpdateTarget = (
 ): 'today' | 'tomorrow' | undefined => {
 	if (hasTomorrowPrices(data, now)) return 'tomorrow';
 
-	const hour = Number(
-		new Intl.DateTimeFormat('en-GB', {
-			timeZone: 'Europe/Madrid',
-			hour: '2-digit',
-			hourCycle: 'h23'
-		}).format(now)
-	);
 	// An evening run may reach the runner after midnight. Recover its prices as today.
-	const today = getTodayDate(now);
-	if (hour < 6 && data.length > 0 && data.every(({ day }) => day === today)) return 'today';
+	if (getMadridHour(now) < 6 && hasPricesFor(data, getTodayDate(now))) return 'today';
 
 	return undefined;
 };

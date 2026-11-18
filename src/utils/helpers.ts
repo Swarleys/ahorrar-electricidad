@@ -63,3 +63,9 @@ export const setColorAndExpensive = (sortedByPrice: baseFormattedData[]): format
 	});
 	return withColorAndExpensive;
 };
+
+/** Turns ESIOS PVPC rows into hourly prices, ranked by cost and ordered by hour. */
+export const cleanPrices = (PVPC: Pvpc[]): formattedData[] => {
+	const sortedByPrice = formattingJson(PVPC).sort(({ price: a }, { price: b }) => a - b);
+	return setColorAndExpensive(sortedByPrice).sort(({ hour: a }, { hour: b }) => a - b);
+};
